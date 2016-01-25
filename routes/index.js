@@ -10,7 +10,7 @@ exports.index = function(req, res){
   //response.write("Hola Inicio");
   //response.end();
   request({
-    url:'http://127.0.0.1:8000/insert_tfg', //URL to hit
+    url:'http://127.0.0.1:8000/alumnos', //URL to hit
     qs: {tfg_titulo: 'titulo'}, //Query string data
     method: 'GET', //TODO:El metodo POST devuelve un 500 sin llegar al back, revisar
     headers: { //We can define headers too
@@ -27,7 +27,7 @@ exports.index = function(req, res){
     if(response.statusCode !== 200){
         return console.log('Invalid Status Code Returned:', response.statusCode);
     }
-    res.render('index', { url_back:'http://127.0.0.1:8000/ejemplo', title: body })
+    res.render('index', { url_back:'http://127.0.0.1:8000/alumnos', title: body })
 
   });
 };
