@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , alumnos = require('./routes/alumnos');
 
 var app = module.exports = express.createServer();
 
@@ -17,6 +18,9 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(express.csrf());
+  app.use(express.favicon());
+  app.use(express.cookieParser());
 });
 
 app.configure('development', function(){
@@ -30,6 +34,9 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+app.get('/alumnos', alumnos.alumnos_get);
+app.post('/alumnos', csrf, alumnos.alumnos_post);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

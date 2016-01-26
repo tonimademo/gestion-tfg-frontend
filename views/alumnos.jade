@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+h1= url_back
+table(class="table table-striped")
+    thead
+      tr
+          th Id
+          th Nombre
+          th Primer Apellido
+          th Segundo Apellido
+    tbody
+        each alum in alums
+            tr
+                td #{alum.id}
+                td #{alum.username}
+                td #{alum.first_name}
+                td #{alum.last_name}
+
+h1= 'Nuevo alumno'
+div.container
+    form(name="add-estimation", method="post", role="form")
+        div.form-group
+            label(for="username") Nombre
+            input(id="username", class="form-control", type="text", name="username")
+        div.form-group
+            label Primer Apellido
+            input(class="form-control", type="text", name="first_name")
+        div.form-group
+            label Segundo Apellido
+            input(class="form-control", type="text", name="last_name")
+        div.form-group
+            input(class="btn btn-default", type="submit", value="Enviar")
