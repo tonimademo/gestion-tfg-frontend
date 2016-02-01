@@ -2,24 +2,27 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 h1= url_back
-table(class="table table-striped")
-    thead
-      tr
-          th Id
-          th Nombre
-          th Primer Apellido
-          th Segundo Apellido
-    tbody
-        each alum in alums
-            tr
-                td #{alum.id}
-                td #{alum.username}
-                td #{alum.first_name}
-                td #{alum.last_name}
+if error
+    h1= error
+else
+    table(class="table table-striped")
+        thead
+          tr
+              th Id
+              th Nombre
+              th Primer Apellido
+              th Segundo Apellido
+        tbody
+            each alum in alums
+                tr
+                    td #{alum.id}
+                    td #{alum.username}
+                    td #{alum.first_name}
+                    td #{alum.last_name}
 
 h1= 'Nuevo alumno'
 div.container
-    form(name="add-estimation", method="post", role="form")
+    form(name="add-estimation", method="post")
         div.form-group
             label(for="username") Nombre
             input(id="username", class="form-control", type="text", name="username")
