@@ -52,7 +52,9 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 app.get('/alumnos', alumnos.alumnos_get);
-app.post('/alumnos', alumnos.alumnos_post);
+app.post('/alumnos', alumnos.insert_alumno);
+app.post('/alumnos/delete', alumnos.insert_alumno);
+app.post('/alumnos/update', alumnos.insert_alumno);
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

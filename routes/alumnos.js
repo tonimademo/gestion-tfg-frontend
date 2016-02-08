@@ -1,6 +1,10 @@
 /*
  * GET alumnos page.
  */
+
+/*
+ * POST alumnos page, para obtener la info de los alumnos
+ */
 exports.alumnos_get = function(req, res){
 
   var request = require('request');
@@ -33,9 +37,9 @@ exports.alumnos_get = function(req, res){
 
 
 /*
- * POST alumnos page.
+ * POST alumnos page, para introducir un nuevo alumno
  */
-exports.alumnos_post = function(req, res){
+exports.insert_alumno = function(req, res){
 
   var request = require('request');
 
@@ -43,7 +47,67 @@ exports.alumnos_post = function(req, res){
   request({
     url: 'http://127.0.0.1:8000/alumnos/', //URL to hit
     method: 'POST',
-    form: req.body,
+    form: req.body
+  },function (error, response, body) {
+    //Check for error
+    if(error){
+        return console.log('Error:', error);
+    }
+
+    //Check for right status code
+    body = JSON.parse(body);
+    if(body.status !== true){
+        res.render('alumnos', { url_back:'http://127.0.0.1:8000/alumnos', error: body.message })
+    }
+    else {
+        res.redirect('http://127.0.0.1:3000/alumnos')
+    }
+
+  });
+};
+
+/*
+ * POST delete_alumno page, para eliminar un alumno de la BD
+ */
+exports.update_alumno = function(req, res){
+
+  var request = require('request');
+
+  console.log("Llamada a '/alumnos'");
+  request({
+    url: 'http://127.0.0.1:8000/alumnos/', //URL to hit
+    method: 'POST',
+    form: req.body
+  },function (error, response, body) {
+    //Check for error
+    if(error){
+        return console.log('Error:', error);
+    }
+
+    //Check for right status code
+    body = JSON.parse(body);
+    if(body.status !== true){
+        res.render('alumnos', { url_back:'http://127.0.0.1:8000/alumnos', error: body.message })
+    }
+    else {
+        res.redirect('http://127.0.0.1:3000/alumnos')
+    }
+
+  });
+};
+
+/*
+ * POST delete_alumno page, para eliminar un alumno de la BD
+ */
+exports.delete_alumno = function(req, res){
+
+  var request = require('request');
+
+  console.log("Llamada a '/alumnos'");
+  request({
+    url: 'http://127.0.0.1:8000/alumnos/', //URL to hit
+    method: 'POST',
+    form: req.body
   },function (error, response, body) {
     //Check for error
     if(error){
